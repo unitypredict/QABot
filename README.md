@@ -145,4 +145,4 @@ The project includes a PowerShell script, `train_and_deploy.ps1`, that automates
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
