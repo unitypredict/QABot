@@ -1,0 +1,7 @@
+faiss-cpu
+langchain-core
+langchain
+langchain_openai
+langchain_community
+pypdf
+unitypredict_engines

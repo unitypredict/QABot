@@ -1,0 +1,17 @@
+{
+    "LocalEngineConfig": {
+        "TempDirPath": "./unitypredict_mocktool/tmp",
+        "ModelsDirPath": "../VectorStores",
+        "RequestFilesDirPath": "./unitypredict_mocktool/requests",
+        "SAVE_CONTEXT": true,
+        "UPT_API_KEY": ""
+    },
+    "DeploymentParameters": {
+        "UnityPredictEngineId": "",
+        "ParentRepositoryId": "TARGET_REPOSITORY_ID",
+        "EngineDescription": "A simple QA chatbot engine",
+        "EnginePlatform": "SL_CPU_BASE_PYTHON_3.12",
+        "Storage": 2048,
+        "Memory": 2048
+    }
+}
