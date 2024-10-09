@@ -25,7 +25,7 @@ Before running the project, ensure you have the following:
 3. **UnityPredict Engines**:
    - Install the UnityPredict Engines SDK by running the following command:
      ```bash
-     pip install unitypredict_engines
+     pip install unitypredict-engines
      ```
 
 4. **UnityPredict Configuration**:

@@ -7,6 +7,10 @@ python -m venv .venv
 
 .\.venv\Scripts\Activate
 
+Write-Host "Installing unitypredict-engines Package..." -ForegroundColor Green
+
+python -m pip install --upgrade --quiet unitypredict-engines
+
 Write-Host "Installing requirements for training script..." -ForegroundColor Green
 
 # Step 1: Change to the QABotTrainer directory and install dependencies
