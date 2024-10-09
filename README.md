@@ -71,9 +71,9 @@ Ensure the config.json file has the correct repository information for UnityPred
 
 ```json
 {
-    "LocalEngineConfig": {
+    "ModelsDirPath": "..\\VectorStores",
+    "LocalMockEngineConfig": {
         "TempDirPath": "./unitypredict_mocktool/tmp",
-        "ModelsDirPath": "../VectorStores",
         "RequestFilesDirPath": "./unitypredict_mocktool/requests",
         "SAVE_CONTEXT": true,
         "UPT_API_KEY": ""
