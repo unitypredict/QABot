@@ -105,34 +105,34 @@ QABot/
    ```
 
 3. **Add your PDF files** to the `Sources` folder:
-```
-Sources/
-├── handbook.pdf
-├── manual.pdf
-└── other-documents.pdf
-```
+   ```
+   Sources/
+   ├── handbook.pdf
+   ├── manual.pdf
+   └── other-documents.pdf
+   ```
 
-The deployment script will automatically update the `config.json` file with your repository ID. If you need to manually modify other settings in `config.json`, you can edit the file directly:
+   The deployment script will automatically update the `config.json` file with your repository ID. If you need to manually modify other settings in `config.json`, you can edit the file directly:
 
-```json
-{
-    "ModelsDirPath": "..\\VectorStores",
-    "LocalMockEngineConfig": {
-        "TempDirPath": "./unitypredict_mocktool/tmp",
-        "RequestFilesDirPath": "./unitypredict_mocktool/requests",
-        "SAVE_CONTEXT": true,
-        "UPT_API_KEY": ""
-    },
-    "DeploymentParameters": {
-        "UnityPredictEngineId": "",
-        "ParentRepositoryId": "TARGET_REPOSITORY_ID",
-        "EngineDescription": "A simple QA chatbot engine",
-        "EnginePlatform": "SL_CPU_BASE_PYTHON_3.12",
-        "Storage": 2048,
-        "Memory": 2048
-    }
-}
-```
+   ```json
+   {
+      "ModelsDirPath": "..\\VectorStores",
+      "LocalMockEngineConfig": {
+         "TempDirPath": "./unitypredict_mocktool/tmp",
+         "RequestFilesDirPath": "./unitypredict_mocktool/requests",
+         "SAVE_CONTEXT": true,
+         "UPT_API_KEY": ""
+      },
+      "DeploymentParameters": {
+         "UnityPredictEngineId": "",
+         "ParentRepositoryId": "TARGET_REPOSITORY_ID",
+         "EngineDescription": "A simple QA chatbot engine",
+         "EnginePlatform": "SL_CPU_BASE_PYTHON_3.12",
+         "Storage": 2048,
+         "Memory": 2048
+      }
+   }
+   ```
 
 ## How to Use
 
@@ -250,14 +250,15 @@ pip install --upgrade -r requirements.txt
 - Verify OpenAI API key has sufficient credits
 - Check HuggingFace token permissions
 - Ensure keys are correctly set in `config.env`
+- Double-check the `HUGGINGFACEHUB_API_TOKEN` and `OPENAI_API_KEY` values
+
+**Configuration file errors:**
+- Ensure `config.env` exists (copy from `config.env.example` if missing)
+- Verify all required environment variables are set
+- Check that repository ID is not using placeholder values
 
 ### Debug Mode
 Enable detailed logging by checking the console output during deployment. The script provides step-by-step feedback.
-
-**Original troubleshooting notes:**
-- **Module Not Found**: Ensure that the correct Python version is being used and all dependencies are installed by running `pip install -r requirements.txt` in the `QABotTrainer` and `QABotEngine` folders.
-- **UnityPredict Deployment Issues**: Ensure that your API key and repository name are correct and the `unitypredict --configure` command has been run on your local machine.
-- **API Key Errors**: Double-check the `HUGGINGFACEHUB_API_TOKEN` and `OPENAI_API_KEY` values in `EntryPoint.py` and `Train.py`.
 
 ## License
 
