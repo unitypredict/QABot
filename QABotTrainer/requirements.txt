@@ -1,7 +1,9 @@
-faiss-cpu
-langchain-core
-langchain
-langchain_openai
-langchain_community
-pypdf
 unitypredict_engines
+faiss-cpu
+langchain>=0.1.5
+langchain-community>=0.0.20
+langchain-openai>=0.1.0
+langchain-experimental>=0.0.50
+pypdf
+python-dotenv
+openai

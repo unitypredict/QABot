@@ -5,6 +5,7 @@ import requests
 import json 
 from typing import Dict
 import codecs
+from dotenv import load_dotenv
 
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -16,14 +17,33 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
-os.environ['HUGGINGFACEHUB_API_TOKEN'] = 'your-huggingface-api-key'
-os.environ["OPENAI_API_KEY"] = 'your-openai-api-key'
-
 langchainBot = None
 
 def run_engine(request: InferenceRequest, platform: IPlatform) -> InferenceResponse:
     
     platform.logMsg("Running App Engine...\n")
+    # Load environment variables from env.config file
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    print(f"Script directory: {script_dir}")
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Files in script directory: {os.listdir(script_dir)}")
+
+    config_file = os.path.join(script_dir, 'env.config')
+    if os.path.exists(config_file):
+        print(f"Config file {config_file} exists")
+        with open(config_file, 'r') as f:
+            print(f"Config file contents: {f.read()}")
+    else:
+        print(f"Config file {config_file} does not exist")
+
+    load_dotenv(config_file)
+
+    # Check if environment variables were loaded
+    openai_key = os.getenv('OPENAI_API_KEY')
+    hf_token = os.getenv('HUGGINGFACEHUB_API_TOKEN')
+    print(f"OPENAI_API_KEY loaded: {'Yes' if openai_key else 'No'}")
+    print(f"HUGGINGFACEHUB_API_TOKEN loaded: {'Yes' if hf_token else 'No'}")
+
     engineResponse = InferenceResponse()
 
     global langchainBot
@@ -56,8 +76,8 @@ def run_engine(request: InferenceRequest, platform: IPlatform) -> InferenceRespo
     return engineResponse
 
 class QAChatBot:
-    model = ChatOpenAI(model='gpt-4o', temperature=0)
-    botEmbeddings = OpenAIEmbeddings()
+    model = None
+    botEmbeddings = None
     vectorStore = None
     chatHistory = {}
     retriever = None
@@ -71,6 +91,12 @@ class QAChatBot:
     conversational_rag_chain = None
 
     def __init__(self, localVectorStoreDirPath):
+        # Initialize model and embeddings in constructor
+        self.model = ChatOpenAI(
+            model=os.getenv('OPENAI_MODEL', 'gpt-4o'), 
+            temperature=float(os.getenv('TEMPERATURE', 0))
+        )
+        self.botEmbeddings = OpenAIEmbeddings()
 
         self.contextualize_q_system_prompt = """Given a chat history and the latest user question \
         which might reference context in the chat history, formulate a standalone question \

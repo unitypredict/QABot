@@ -3,5 +3,7 @@ langchain-core
 langchain
 langchain_openai
 langchain_community
-pypdf
 unitypredict_engines
+pypdf
+python-dotenv
+langchain-experimental>=0.0.50

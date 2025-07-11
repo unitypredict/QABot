@@ -1,2 +1,10 @@
 QABotEngine/__pycache__/
 .venv/
+# Ignore .env files in sub-projects but allow root config.env
+QABotTrainer/config.env
+QABotEngine/config.env
+*.env
+QABotEngine/env.config
+QABotTrainer/env.config
+VectorStores/index.faiss
+VectorStores/index.pkl
